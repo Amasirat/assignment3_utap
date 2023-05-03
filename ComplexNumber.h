@@ -6,17 +6,21 @@ class ComplexNumber
     ComplexNumber(double imag);
     ~ComplexNumber();
 //show complex number in appropiate form
-    void show();
+    void show() const;
 //assign value to real part of the complex number
     void assign_real(double real);
 //assign value to imaginary part of the complex number
     void assign_imag(double imag);
 //get real number
-    double real();
+    double real() const {return m_real;}
 //get imaginary number
-
-
-
+    double imag() const {return m_imag;}
+//get complex number in string and assign real and imaginary parts of the number to object
+    void assign_string_num(const std::string& number);
+//static function to compare two numbers of ComplexNumber class
+    static bool Compare(const ComplexNumber& num1, const ComplexNumber& num2);
+//sum operation on object
+    ComplexNumber& sum(ComplexNumber num1);
 private:
     double m_real{};
     double m_imag{};
