@@ -1,9 +1,14 @@
+#ifndef COMPLEX_NUMBER_H
+#define COMPLEX_NUMBER_H
+
 #include <iostream>
 
 class ComplexNumber
 {
+public:
     ComplexNumber(double real = 1.0 , double imag = 1.0);
     ComplexNumber(double imag);
+//default destructor
     ~ComplexNumber() = default;
 //show complex number in appropiate form
     void show() const;
@@ -17,11 +22,33 @@ class ComplexNumber
     double imag() const;
 //get complex number in string and assign real and imaginary parts of the number to object
     void assign_string_num(const std::string& number);
+//calculate the absolute value of the complex number
+    double absolute() const;
 //static function to compare two numbers of ComplexNumber class
-    static bool Compare(const ComplexNumber& num1, const ComplexNumber& num2);
-//sum operation on object
-    ComplexNumber& operator+(ComplexNumber num1);
+    static bool Compare(const ComplexNumber& num1, const ComplexNumber& num2)
+    {
+        return (num1.m_real == num2.m_real && num1.m_imag == num2.m_imag);
+    }
+//////////////////////////////////////////////////////////////
+//Operator Overloading////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//Self summation
+    ComplexNumber& operator+=(ComplexNumber& num);
+//self subtraction
+    ComplexNumber& operator-=(ComplexNumber& num);
+//self multiplication
+    ComplexNumber& operator*=(ComplexNumber& num);
+//self division
+    ComplexNumber& operator/=(ComplexNumber& num);
+//four arithmetic operations for current object and another object, all return a ComplexNumber
+    ComplexNumber operator+(ComplexNumber& num) const;
+    ComplexNumber operator-(ComplexNumber& num) const;
+    ComplexNumber operator*(ComplexNumber& num) const;
+    ComplexNumber operator/(ComplexNumber& num) const;
+
 private:
     double m_real{};
     double m_imag{};
 };
+#endif
