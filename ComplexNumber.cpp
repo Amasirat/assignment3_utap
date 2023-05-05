@@ -4,10 +4,8 @@
 #include <iostream>
 
 
-//Constructors
+//Constructor
 ComplexNumber::ComplexNumber(double real, double imag) : m_real{real}, m_imag{imag}
-{}
-ComplexNumber::ComplexNumber(double imag) : m_imag{imag}
 {}
 //show complex number in appropiate form
 void ComplexNumber::show() const
@@ -82,9 +80,37 @@ double ComplexNumber::real() const {return m_real;}
 //get imaginary number
 double ComplexNumber::imag() const {return m_imag;}
 //get complex number in string and assign real and imaginary parts of the number to object
-void ComplexNumber::assign_string_num(const std::string& number)
+void ComplexNumber::assign_string_num(std::string& number)
 {
+    double real{std::stod(number)};
+    double imag{};
+    char imag_sign{};
+    int pos{0};
+    if(number[pos] == '+' || number[pos] == '-')
+    {
+        number = number.erase(pos, pos + 1);
+        std::cout << number << '\n';
+    }
+    while(pos < number.size())
+    {
+        if(number[pos] == '+' || number[pos] == '-')
+        {
+            imag_sign = number[pos];
+            break;
+        }
+        else
+        {
+            ++pos;
+        }
+    }
+    number = number.erase(0,pos + 1);
+    imag = std::stod(number);
 
+    if(imag_sign == '-')
+        imag = -(imag);
+
+        m_real = real;
+        m_imag = imag;
 }
 //calculate the absolute value of the complex number
     double ComplexNumber::absolute() const

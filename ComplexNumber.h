@@ -6,8 +6,7 @@
 class ComplexNumber
 {
 public:
-    ComplexNumber(double real = 1.0 , double imag = 1.0);
-    ComplexNumber(double imag);
+    ComplexNumber(double real = 0.0 , double imag = 0.0);
 //default destructor
     ~ComplexNumber() = default;
 //show complex number in appropiate form
@@ -21,7 +20,7 @@ public:
 //get imaginary number
     double imag() const;
 //get complex number in string and assign real and imaginary parts of the number to object
-    void assign_string_num(const std::string& number);
+    void assign_string_num(std::string& number);
 //calculate the absolute value of the complex number
     double absolute() const;
 //static function to compare two numbers of ComplexNumber class
